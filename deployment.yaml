@@ -17,7 +17,7 @@ spec:
         - name: regsecret-operator
           image: mcasimir/regsecret-operator:latest
           env:
-            name: REGSECRET_OPERATOR_CONFIG
+          - name: REGSECRET_OPERATOR_CONFIG
             valueFrom:
               secretKeyRef:
                 name: regsecret-operator-config
