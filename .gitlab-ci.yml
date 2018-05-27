@@ -1,12 +1,6 @@
 stages:
   - build
 
- build:
-   image: docker:stable
-   services:
-   - docker:dind
-   stage: build
-
 build_and_push_dev:
   stage: build
   image: docker:stable
