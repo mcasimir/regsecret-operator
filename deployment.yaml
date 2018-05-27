@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: regsecret-operator
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: regsecret-operator
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: regsecret-operator
+    spec:
+      containers:
+        - name: regsecret-operator
+          image: mcasimir/regsecret-operator:latest
+          env:
+            name: REGSECRET_OPERATOR_CONFIG
+            valueFrom:
+              secretKeyRef:
+                name: regsecret-operator-config
+                key: config

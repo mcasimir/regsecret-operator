@@ -1,0 +1,40 @@
+{
+  "logger": {
+    "level": "debug",
+    "format": "pretty"
+  },
+  "secrets": [
+    {
+      "secretName": "anyone",
+      "credentials": {
+        "https://index.docker.io/v1/": {
+          "username": "my-username",
+          "password": "my-password",
+          "email": "my-email"
+        }
+      }
+    },
+    {
+      "namespaceSelector": "owner==dev",
+      "secretName": "devs",
+      "credentials": {
+        "https://index.docker.io/v1/": {
+          "username": "my-username",
+          "password": "my-password",
+          "email": "my-email"
+        }
+      }
+    },
+    {
+      "namespaceSelector": "owner==sysadmin",
+      "secretName": "sysadmins",
+      "credentials": {
+        "https://index.docker.io/v1/": {
+          "username": "my-username",
+          "password": "my-password",
+          "email": "my-email"
+        }
+      }
+    }
+  ]
+}
