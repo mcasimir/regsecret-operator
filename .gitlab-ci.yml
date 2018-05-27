@@ -9,13 +9,11 @@ build_and_push_dev:
   variables:
     DOCKER_IMAGE: mcasimir/regsecret-operator
     DOCKER_IMAGE_CURRENT_TAG: $DOCKER_IMAGE:dev-$CI_COMMIT_REF_NAME
-    DOCKER_IMAGE_LATEST: $DOCKER_IMAGE:latest
   script:
     - docker login -u $DOCKER_USER -p $DOCKER_PASS
     - echo "Building and pushing $DOCKER_IMAGE_CURRENT_TAG"
     - docker build -t $DOCKER_IMAGE_CURRENT_TAG .
-    - docker tag $DOCKER_IMAGE_CURRENT_TAG $DOCKER_IMAGE_LATEST
-    - docker push $DOCKER_IMAGE
+    - docker push $DOCKER_IMAGE_CURRENT_TAG
   only:
     - master
   tags:
