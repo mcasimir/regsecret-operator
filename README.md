@@ -26,7 +26,7 @@ Create a configuration file (ie. `config.json`):
 }
 ```
 
-Then upload it as a secret in kubernetes:
+Upload it as a secret in kubernetes:
 
 ```
 kubectl -n kube-system create secret generic regsecret-operator-config --from-file=config=./config.json
@@ -35,7 +35,7 @@ kubectl -n kube-system create secret generic regsecret-operator-config --from-fi
 Finally apply the deployment.yaml file contained in this repo:
 
 ```
-kubectl apply -f deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/mcasimir/regsecret-operator/master/deployment.yaml
 ```
 
 ### Configuration options
