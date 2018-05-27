@@ -44,9 +44,14 @@ kubectl apply -f https://raw.githubusercontent.com/mcasimir/regsecret-operator/m
 |-------------------------------------|----------|------------------------------------------------------------------------------------------------------|----------|----------|
 | logger.level                        | `string` | Minimum allowed level for log messages. One of: `"debug"`, `"info"`, `"warn"`, `"error"`, `"fatal"`. | false    | "info"   |
 | logger.format                       | `string` | Log format. One of: `"pretty"`, `"json"`.                                                            | false    | "pretty" |
-| secrets[].namespaceSelector         | `string` | A namespace label selector. ie. `foo==bar`.                                                          | false    |          |
+| secrets[].namespaceSelector         | `string` | A namespace label selector. ie. `foo==bar`. Leaving it empty will match any namespace.                                                          | false    |          |
 | secrets[].secretName                | `string` | The name of the secret to be created.                                                                | true     |          |
 | secrets[].credentials[uri]          | `string` | The url of the registry.                                                                             | true     |          |
-| secrets[].credentials[uri].username | `string` | Username for the registry.                                                                           | true     |          |
-| secrets[].credentials[uri].password | `string` | Password for the registry.                                                                           | true     |          |
-| secrets[].credentials[uri].email    | `string` | Email for the registry.                                                                              | true     |          |
+| secrets[].credentials[uri].username | `string` | Username for authentication with the registry.                                                                           | true     |          |
+| secrets[].credentials[uri].password | `string` | Password for authentication with the registry.                                                                           | true     |          |
+| secrets[].credentials[uri].email    | `string` | Email for authentication with the registry.                                                                              | true     |          |
+### Caveats
+
+If you plan to use a `namespaceSelector` be aware that labeling a namespace with `kubectl label` will not trigger any event. In this case, the chosen selector may not match the namespace immediately but only after the next resync (which will eventually happen but not so immediately).
+
+Adding/changing labels by editing the namespace resource directly (ie. with `kubectl edit` or `kubectl apply`) does not have the same issue.
