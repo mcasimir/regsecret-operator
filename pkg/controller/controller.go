@@ -79,6 +79,7 @@ func (c *NamespaceController) createSecret(namespaceName string) {
 	secret, err := c.newSecretFromCredentials(namespaceName)
 	if err != nil {
 		log.Error(err.Error)
+		return
 	}
 
 	_, err = c.client.CoreV1().Secrets(namespaceName).Create(secret)
